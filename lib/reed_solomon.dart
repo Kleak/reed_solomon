@@ -1,8 +1,6 @@
 library reed_solomon;
 
-import "dart:typed_data";
-
-part "src/galois_field.dart";
+import "package:galois_field/galois_field.dart";
 
 /**
  * Computes the generator polynomial for a given number of error correction symbols

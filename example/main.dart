@@ -1,6 +1,7 @@
 
 import "dart:io";
 
+import "package:galois_field/galois_field.dart";
 import "package:reed_solomon/reed_solomon.dart";
 
 printBlock(message_in, message) {
