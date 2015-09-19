@@ -71,9 +71,7 @@ List<int> _rsCalculateSyndrome(List<int> msg, int nsym) {
  */
 List<int> _rsCorrectErrata(List<int> message, List<int> synd, List<int> pos) {
   List<int> coef_pos = <int>[];
-  pos.forEach((int value) {
-    coef_pos.add(message.length - 1 - value);
-  });
+  pos.forEach((int value) => coef_pos.add(message.length - 1 - value));
   List<int> loc = _rsFindErrataLocator(coef_pos);
   List<int> reversed = new List.from(synd.sublist(0, pos.length).reversed);
   List<int> eval = _rsFindErrorEvaluator(reversed, loc, pos.length - 1);
