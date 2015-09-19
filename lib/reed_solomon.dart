@@ -44,14 +44,14 @@ List<int> rsEncodeMessage(List<int> message_in, int nsym) {
   return []..addAll(message_out);
 }
 
+
 int _max(List<int> list) {
-  int neg = -999999999999999;
   int r = null;
-  list.forEach((int value) {
-    if (value > neg) {
-      r = value;
+  for (int i = 1; i < list.length; i++) {
+    if (list[i - 1].compareTo(r == null ? list[i] : r) >= 0) {
+      r = list[i];
     }
-  });
+  }
   return r;
 }
 
