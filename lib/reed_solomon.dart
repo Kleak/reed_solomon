@@ -44,7 +44,6 @@ List<int> rsEncodeMessage(List<int> message_in, int nsym) {
   return []..addAll(message_out);
 }
 
-
 int _max(List<int> list) {
   int r = null;
   for (int i = 1; i < list.length; i++) {
@@ -77,19 +76,17 @@ List<int> _rsCorrectErrata(List<int> message, List<int> synd, List<int> pos) {
   List<int> eval = _rsFindErrorEvaluator(reversed, loc, pos.length - 1);
   List<int> locprime = <int>[];
   bool skipNext = false;
-  for (int i = loc.length & 1; i < loc.length; i++) {
-    if (!skipNext) {
-      locprime.add(loc[i]);
-    }
+  locprime.addAll(loc.skip(loc.length & 1).where((int value) {
     skipNext = !skipNext;
-  }
-  for (int i = 0; i < pos.length; i++) {
-    int x = GF_EXP[pos[i] + 256 - message.length];
+    return skipNext;
+  }));
+  pos.forEach((int value) {
+    int x = GF_EXP[value + 256 - message.length];
     int y = gfPolynomialEval(eval, x);
     int z = gfPolynomialEval(locprime, gfMultiply(x, x));
     int magnitude = gfDivide(y, gfMultiply(x, z));
-    message[pos[i]] ^= magnitude;
-  }
+    message[value] ^= magnitude;
+  });
   return message;
 }
 
@@ -141,13 +138,13 @@ List<int> _rsFindErrors(List<int> err_loc, int nmess) {
  */
 List<int> _rsForneySyndrome(List<int> synd, List<int> pos, int nmess) {
   List<int> fsynd = new List.from(synd);
-  for (int i = 0; i < pos.length; i++) {
-    int x = GF_EXP[nmess - 1 - pos[i]];
+  pos.forEach((int value) {
+    int x = GF_EXP[nmess - 1 - value];
     for (int j = 0; j < fsynd.length - 1; j++) {
       fsynd[j] = gfMultiply(fsynd[j], x) ^ fsynd[j + 1];
     }
     fsynd.removeLast();
-  }
+  });
   return fsynd;
 }
 
