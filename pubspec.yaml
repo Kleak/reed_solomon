@@ -8,5 +8,4 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  galois_field:
-    path: ..\galois_field\
+  galois_field: 0.0.7
