@@ -1,5 +1,5 @@
 name: reed_solomon
-version: 0.0.4
+version: 0.0.5
 description: Reed Solomon implementation in pure Dart
 author: Kevin Segaud <segaud.kevin@gmail.com>
 homepage: https://github.com/Kleak/reed_solomon
@@ -8,4 +8,4 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  galois_field: 0.0.4
+  galois_field: 0.0.5

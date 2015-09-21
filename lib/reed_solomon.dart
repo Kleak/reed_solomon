@@ -60,7 +60,7 @@ int _max(List<int> list) {
 List<int> _rsCalculateSyndrome(List<int> msg, int nsym) {
   List<int> synd = new List.filled(nsym, 0);
   for (int i = 0; i < nsym; i++) {
-    synd[i] = gfPolynomialEval(msg, _GF_EXP[i]);
+    synd[i] = gfPolynomialEval(msg, GF_EXP[i]);
   }
   return synd;
 }
@@ -81,7 +81,7 @@ List<int> _rsCorrectErrata(List<int> message, List<int> synd, List<int> pos) {
     return skipNext;
   }));
   pos.forEach((int value) {
-    int x = _GF_EXP[value + 256 - message.length];
+    int x = GF_EXP[value + 256 - message.length];
     int y = gfPolynomialEval(eval, x);
     int z = gfPolynomialEval(locprime, gfMultiply(x, x));
     int magnitude = gfDivide(y, gfMultiply(x, z));
@@ -100,7 +100,7 @@ List<int> _rsCorrectErrata(List<int> message, List<int> synd, List<int> pos) {
 List<int> _rsFindErrataLocator(List<int> e_pos, {int x: null}) {
   List<int> e_loc = [1];
   for (x in e_pos) {
-    e_loc = gfPolynomialMultiply(e_loc, gfPolynomialAdd([1], [_GF_EXP[x], 0]));
+    e_loc = gfPolynomialMultiply(e_loc, gfPolynomialAdd([1], [GF_EXP[x], 0]));
   }
   return e_loc;
 }
@@ -123,7 +123,7 @@ List<int> _rsFindErrors(List<int> err_loc, int nmess) {
   int errs = err_loc.length - 1;
   List<int> err_pos = <int>[];
   for (int i = 0; i < nmess; i++) {
-    if (gfPolynomialEval(err_loc, _GF_EXP[255 - i]) == 0) {
+    if (gfPolynomialEval(err_loc, GF_EXP[255 - i]) == 0) {
       err_pos.add(nmess - 1 - i);
     }
   }
@@ -184,7 +184,7 @@ List<int> _rsGeneratorErrorPolynomial(List<int> synd) {
 List<int> _rsGeneratorPolynomial(int nsym) {
   List<int> g = [1];
   for (int i = 0; i < nsym; i++) {
-    g = gfPolynomialMultiply(g, [1, _GF_EXP[i]]);
+    g = gfPolynomialMultiply(g, [1, GF_EXP[i]]);
   }
   return g;
 }
