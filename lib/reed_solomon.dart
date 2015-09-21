@@ -81,7 +81,7 @@ List<int> _rsCorrectErrata(List<int> message, List<int> synd, List<int> pos) {
     return skipNext;
   }));
   pos.forEach((int value) {
-    int x = GF_EXP[value + 256 - message.length];
+    int x = GF_EXP[value + GF_LOG_SIZE - message.length];
     int y = gfPolynomialEval(eval, x);
     int z = gfPolynomialEval(locprime, gfMultiply(x, x));
     int magnitude = gfDivide(y, gfMultiply(x, z));
@@ -123,7 +123,7 @@ List<int> _rsFindErrors(List<int> err_loc, int nmess) {
   int errs = err_loc.length - 1;
   List<int> err_pos = <int>[];
   for (int i = 0; i < nmess; i++) {
-    if (gfPolynomialEval(err_loc, GF_EXP[255 - i]) == 0) {
+    if (gfPolynomialEval(err_loc, GF_EXP[(GF_LOG_SIZE - 1) - i]) == 0) {
       err_pos.add(nmess - 1 - i);
     }
   }
