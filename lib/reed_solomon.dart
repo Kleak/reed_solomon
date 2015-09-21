@@ -139,7 +139,7 @@ List<int> _rsFindErrors(List<int> err_loc, int nmess) {
 List<int> _rsForneySyndrome(List<int> synd, List<int> pos, int nmess) {
   List<int> fsynd = new List.from(synd);
   pos.forEach((int value) {
-    int x = _GF_EXP[nmess - 1 - value];
+    int x = GF_EXP[nmess - 1 - value];
     for (int j = 0; j < fsynd.length - 1; j++) {
       fsynd[j] = gfMultiply(fsynd[j], x) ^ fsynd[j + 1];
     }
