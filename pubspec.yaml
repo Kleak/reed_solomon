@@ -1,5 +1,5 @@
 name: reed_solomon
-version: 0.0.7
+version: 0.0.8
 description: Reed Solomon implementation in pure Dart
 author: Kevin Segaud <segaud.kevin@gmail.com>
 homepage: https://github.com/Kleak/reed_solomon

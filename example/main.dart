@@ -28,9 +28,10 @@ main()  {
     0x40, 0xd2, 0x75, 0x47, 0x76, 0x17, 0x32, 0x06,
     0x27, 0x26, 0x96, 0xc6, 0xc6, 0x96, 0x70, 0xec
   ];
-  List<int> msg = rsEncodeMessage(message_in, 10);
-  printBlock(message_in, msg);
+  int k = 20;
+  List<int> msg = rsEncodeMessage(message_in, k);
 
+  printBlock(message_in, msg);
   print("");
 
   msg[0] = 0;
@@ -38,7 +39,7 @@ main()  {
   printBlock(message_in, msg);
   print("");
 
-  msg = rsCorrectMessage(msg, 10);
+  msg = rsCorrectMessage(msg, k);
 
   printBlock(message_in, msg);
 
