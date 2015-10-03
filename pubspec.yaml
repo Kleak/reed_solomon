@@ -9,3 +9,7 @@ environment:
 
 dependencies:
   galois_field: 0.0.7
+
+overrides_dependencies:
+  galois_field:
+    path: ../galois_field/
